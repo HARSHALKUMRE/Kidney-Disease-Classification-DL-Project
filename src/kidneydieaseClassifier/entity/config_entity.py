@@ -1,46 +1,50 @@
-from pathlib import Path
-from dataclasses import dataclass
+from dataclasses import dataclass  # Import the dataclass decorator for creating data classes
+from pathlib import Path  # Import Path for easy file path handling
 
+# Configuration class for data ingestion settings
 @dataclass(frozen=True)
 class DataIngestionConfig:
-    root_dir: Path
-    source_URL: str
-    local_data_file: Path
-    unzip_dir: Path
+    root_dir: Path  # Directory where data ingestion artifacts will be stored
+    source_URL: str  # URL to the source dataset
+    local_data_file: Path  # Path for the downloaded local data file
+    unzip_dir: Path  # Directory where the data will be unzipped
 
+# Configuration class for preparing the base model settings
 @dataclass(frozen=True)
 class PrepareBaseModelConfig:
-    root_dir: Path
-    base_model_path: Path
-    updated_base_model_path: Path
-    params_image_size: list
-    params_learning_rate: float
-    params_include_top: bool
-    params_weights: str
-    params_classes: str
-
+    root_dir: Path  # Directory for storing base model artifacts
+    base_model_path: Path  # Path to the original base model file
+    updated_base_model_path: Path  # Path to the modified base model file
+    params_image_size: list  # List containing image dimensions (e.g., [height, width, channels])
+    params_learning_rate: float  # Learning rate for training the model
+    params_include_top: bool  # Flag to include the top layer of the model
+    params_weights: str  # Source of pre-trained weights (e.g., 'imagenet')
+    params_classes: int  # Number of classes for classification
+    
 @dataclass(frozen=True)
 class PrepareCallbacksConfig:
-    root_dir: Path
+    root_dir: Path 
     tensorboard_root_log_dir: Path
     checkpoint_model_filepath: Path
 
+# Configuration class for training settings
 @dataclass(frozen=True)
 class ModelTrainingConfig:
-    root_dir: Path
-    trained_model_path: Path
-    updated_base_model_path: Path   
-    training_data: Path
-    params_epochs: int
-    params_batch_size: int
-    params_is_augmentation: bool
-    params_image_size: list
+    root_dir: Path  # Directory for storing training artifacts
+    trained_model_path: Path  # Path where the trained model will be saved
+    updated_base_model_path: Path  # Path to the updated base model
+    training_data: Path  # Path to the training dataset
+    params_epochs: int  # Number of epochs for training
+    params_batch_size: int  # Batch size for training
+    params_is_augmentation: bool  # Flag to indicate if data augmentation is used
+    params_image_size: list  # Image dimensions for input to the model
 
+# Configuration class for evaluation settings
 @dataclass(frozen=True)
 class ModelEvaluationConfig:
-    path_of_model: Path 
-    training_data: Path
-    all_params: dict 
-    mlflow_uri: str
-    params_image_size: list
-    params_batch_size: int
+    path_of_model: Path  # Path to the model to be evaluated
+    training_data: Path  # Path to the training dataset used for evaluation
+    all_params: dict  # Dictionary containing all relevant parameters for evaluation
+    mlflow_uri: str  # URI for MLflow tracking server
+    params_image_size: list  # Image dimensions for input to the model
+    params_batch_size: int  # Batch size for evaluation

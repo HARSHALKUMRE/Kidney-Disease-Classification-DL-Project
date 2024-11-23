@@ -1,7 +1,13 @@
-from kidneydieaseClassifier.constants import *
-from kidneydieaseClassifier.utils.common import read_yaml, create_directories
-from kidneydieaseClassifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, ModelTrainingConfig, ModelEvaluationConfig
-import os
+# Import necessary modules and classes from the kidneydieaseClassifier package
+from kidneydieaseClassifier.constants import * # Import all constants defined in the constants module
+from kidneydieaseClassifier.utils.common import read_yaml, create_directories # Import utility functions for reading YAML files and creating directories
+
+from kidneydieaseClassifier.entity.config_entity import (DataIngestionConfig, 
+                                                         PrepareBaseModelConfig, 
+                                                         PrepareCallbacksConfig, 
+                                                         ModelTrainingConfig, 
+                                                         ModelEvaluationConfig)
+import os # Import the os module
 
 class ConfigurationManager:
 

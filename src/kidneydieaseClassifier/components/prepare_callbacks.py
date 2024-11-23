@@ -2,6 +2,7 @@ import os
 import urllib.request as request
 from zipfile import ZipFile
 import tensorflow as tf
+import keras
 import time
 from kidneydieaseClassifier.entity.config_entity import PrepareCallbacksConfig
 
@@ -17,12 +18,12 @@ class PrepareCallback:
             self.config.tensorboard_root_log_dir,
             f"tb_logs_at_{timestamp}",
         )
-        return tf.keras.callbacks.TensorBoard(log_dir=tb_running_log_dir)
+        return keras.callbacks.TensorBoard(log_dir=tb_running_log_dir)
     
 
     @property
     def _create_ckpt_callbacks(self):
-        return tf.keras.callbacks.ModelCheckpoint(
+        return keras.callbacks.ModelCheckpoint(
             filepath=self.config.checkpoint_model_filepath,
             save_best_only=True
         )
